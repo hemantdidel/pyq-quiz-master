@@ -2,17 +2,17 @@
   {
     "question":"भारत की राजधानी क्या है?",
     "options":["मुंबई","दिल्ली","जयपुर","कोलकाता"],
-    "answer":1
+    "answer":2
   },
   {
-    "question":"2 + 2 = ?",
-    "options":["2","3","4","5"],
-    "answer":2
+    "question":"12 + 12 = ?",
+    "options":["24","34","14","25"],
+    "answer":1
   },
   {
     "question":"राजस्थान की राजधानी क्या है?",
     "options":["जयपुर","जोधपुर","बीकानेर","अजमेर"],
-    "answer":0
+    "answer":1
   },
   {
   "question":"JSON Test Question 4",
