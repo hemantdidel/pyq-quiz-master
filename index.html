@@ -1,21 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PYQ Quiz Master</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:15px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.search{
+padding:20px;
+text-align:center;
+}
+
+.search input{
+width:90%;
+max-width:500px;
+padding:12px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+margin-bottom:10px;
+}
+
+.card p{
+color:#666;
+margin-bottom:15px;
+}
+
+.btn{
+display:inline-block;
+background:#2563eb;
+color:white;
+padding:10px 15px;
+text-decoration:none;
+border-radius:8px;
+}
+
+footer{
+margin-top:30px;
+background:#2563eb;
+color:white;
+text-align:center;
+padding:15px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>🎯 PYQ Quiz Master</h1>
+<header>
+🎯 PYQ Quiz Master
+</header>
 
+<div class="search">
+<input type="text" placeholder="Search Exam...">
+</div>
+
+<div class="container">
+
+<div class="card">
 <h2>🚂 RRB Group D</h2>
-<a href="#">Start Test</a>
+<p>Railway Group D Mock Tests</p>
+<a class="btn" href="#">Start Test</a>
+</div>
 
+<div class="card">
 <h2>📋 SSC GD</h2>
-<a href="#">Start Test</a>
+<p>SSC GD Practice Tests</p>
+<a class="btn" href="#">Start Test</a>
+</div>
 
+<div class="card">
 <h2>🍎 REET</h2>
-<a href="#">Start Test</a>
+<p>REET Level 1 & 2 Tests</p>
+<a class="btn" href="#">Start Test</a>
+</div>
+
+<div class="card">
+<h2>🏜️ Rajasthan GK</h2>
+<p>Rajasthan Exams Practice</p>
+<a class="btn" href="#">Start Test</a>
+</div>
+
+</div>
+
+<footer>
+Hemant Didel © 2026
+</footer>
 
 </body>
 </html>
