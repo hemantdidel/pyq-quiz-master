@@ -258,6 +258,16 @@ localStorage.setItem("wrong",wrong);
 localStorage.setItem("unattempted",unattempted);
 localStorage.setItem("percentage",percentage);
 
+localStorage.setItem(
+"userAnswers",
+JSON.stringify(userAnswers)
+);
+
+localStorage.setItem(
+"questions",
+JSON.stringify(questions)
+);
+
 window.location="result.html";
 }
 
