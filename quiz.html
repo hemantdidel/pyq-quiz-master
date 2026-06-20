@@ -95,7 +95,7 @@ color:white;
 
 <button class="next" onclick="nextQuestion()">Next</button>
 
-<button onclick="finishQuiz()">Submit Test</button>
+<button onclick="confirmSubmit()">Submit Test</button>
 
 </div>
 
@@ -143,6 +143,14 @@ buttons[userAnswers[current]]
 }
 
 buildPalette();
+  
+let nextBtn=document.querySelector(".next");
+
+if(current===questions.length-1){
+nextBtn.innerHTML="Finish Test";
+}else{
+nextBtn.innerHTML="Next";
+}
 }
 
 function selectAnswer(index){
@@ -214,6 +222,15 @@ return;
 loadQuestion();
 }
 
+function confirmSubmit(){
+
+let ok=confirm("क्या आप टेस्ट समाप्त करना चाहते हैं?");
+
+if(ok){
+finishQuiz();
+}
+
+}  
 function finishQuiz(){
 
 let score=0;
@@ -244,7 +261,7 @@ localStorage.setItem("percentage",percentage);
 window.location="result.html";
 }
 
-let time=60;
+let time=1800;
 
 const timer=setInterval(()=>{
 
