@@ -1,23 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-<title>Result</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Result</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+text-align:center;
+}
+
+h1{
+color:#2563eb;
+}
+
+.card{
+background:#f1f5f9;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+font-size:20px;
+font-weight:bold;
+}
+
+.btn{
+display:inline-block;
+padding:12px 20px;
+margin-top:15px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+</style>
 </head>
+
 <body>
 
-<h1>🎉 Result</h1>
+<div class="container">
 
-<h2 id="result"></h2>
+<h1>🎉 Test Result</h1>
 
-<a href="index.html">🏠 Home</a>
+<div class="card" id="score"></div>
+
+<div class="card" id="wrong"></div>
+
+<div class="card" id="unattempted"></div>
+
+<div class="card" id="percentage"></div>
+
+<a href="index.html" class="btn">
+🏠 Back To Home
+</a>
+
+</div>
 
 <script>
 
-let score=localStorage.getItem("score");
-let total=localStorage.getItem("total");
+let score=localStorage.getItem("score") || 0;
+let total=localStorage.getItem("total") || 0;
+let wrong=localStorage.getItem("wrong") || 0;
+let unattempted=localStorage.getItem("unattempted") || 0;
+let percentage=localStorage.getItem("percentage") || 0;
 
-document.getElementById("result").innerHTML =
-`Score: ${score} / ${total}`;
+document.getElementById("score").innerHTML =
+`✅ Score : ${score} / ${total}`;
+
+document.getElementById("wrong").innerHTML =
+`❌ Wrong : ${wrong}`;
+
+document.getElementById("unattempted").innerHTML =
+`⚪ Unattempted : ${unattempted}`;
+
+document.getElementById("percentage").innerHTML =
+`📊 Percentage : ${percentage}%`;
 
 </script>
 
