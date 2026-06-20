@@ -1,53 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-<title>RRB Quiz</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RRB Mock Test</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+#timer{
+color:red;
+font-size:24px;
+font-weight:bold;
+}
+
+button{
+padding:10px;
+margin:5px 0;
+width:100%;
+cursor:pointer;
+}
+
+.next{
+background:#2563eb;
+color:white;
+border:none;
+}
+
+.selected{
+background:#93c5fd;
+}
+</style>
 </head>
+
 <body>
+
+<div class="container">
 
 <h1>🚂 RRB Group D Mock Test</h1>
 
-<h2 id="timer">60</h2>
+<div id="timer">60</div>
 
 <h3 id="question"></h3>
 
 <div id="options"></div>
 
-<br>
+<button class="next" onclick="nextQuestion()">Next</button>
 
-<button onclick="nextQuestion()">Next</button>
+</div>
 
 <script>
 
 const questions = [
-
 {
 q:"भारत की राजधानी क्या है?",
 options:["मुंबई","दिल्ली","जयपुर","कोलकाता"],
 answer:1
 },
-
 {
 q:"2 + 2 = ?",
 options:["2","3","4","5"],
 answer:2
 },
-
 {
-q:"राजस्थान की राजधानी?",
+q:"राजस्थान की राजधानी क्या है?",
 options:["जयपुर","जोधपुर","बीकानेर","अजमेर"],
 answer:0
 }
-
 ];
 
 let current=0;
-let score=0;
+let userAnswers=[];
 
 function loadQuestion(){
 
-document.getElementById("question").innerHTML=
-questions[current].q;
+document.getElementById("question").innerHTML =
+`Q${current+1}. ${questions[current].q}`;
 
 let html="";
 
@@ -56,22 +97,23 @@ questions[current].options.forEach((opt,index)=>{
 html += `
 <button onclick="selectAnswer(${index})">
 ${opt}
-</button><br><br>
+</button>
 `;
 
 });
 
-document.getElementById("options").innerHTML=html;
+document.getElementById("options").innerHTML = html;
 }
 
 function selectAnswer(index){
 
-if(index===questions[current].answer){
+userAnswers[current]=index;
 
-score++;
+let buttons=document.querySelectorAll("#options button");
 
-}
+buttons.forEach(btn=>btn.classList.remove("selected"));
 
+buttons[index].classList.add("selected");
 }
 
 function nextQuestion(){
@@ -80,19 +122,57 @@ current++;
 
 if(current>=questions.length){
 
+let score=0;
+
+for(let i=0;i<questions.length;i++){
+
+if(userAnswers[i]===questions[i].answer){
+score++;
+}
+
+}
+
 localStorage.setItem("score",score);
+localStorage.setItem("total",questions.length);
 
 window.location="result.html";
 
 return;
+}
 
+loadQuestion();
 }
 
 loadQuestion();
 
+let time=60;
+
+setInterval(()=>{
+
+time--;
+
+document.getElementById("timer").innerHTML =
+"⏱️ "+time;
+
+if(time<=0){
+
+let score=0;
+
+for(let i=0;i<questions.length;i++){
+
+if(userAnswers[i]===questions[i].answer){
+score++;
 }
 
-loadQuestion();
+}
+
+localStorage.setItem("score",score);
+localStorage.setItem("total",questions.length);
+
+window.location="result.html";
+}
+
+},1000);
 
 </script>
 
