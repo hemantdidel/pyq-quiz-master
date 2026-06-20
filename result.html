@@ -5,17 +5,20 @@
 </head>
 <body>
 
-<h1>🎉 Test Result</h1>
+<h1>🎉 Result</h1>
 
-<h2 id="score"></h2>
+<h2 id="result"></h2>
 
 <a href="index.html">🏠 Home</a>
 
 <script>
-let score = localStorage.getItem("score") || 0;
 
-document.getElementById("score").innerHTML =
-"🎯 Score: " + score + " / 3"
+let score=localStorage.getItem("score");
+let total=localStorage.getItem("total");
+
+document.getElementById("result").innerHTML =
+`Score: ${score} / ${total}`;
+
 </script>
 
 </body>
