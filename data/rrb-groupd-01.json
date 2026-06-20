@@ -1,17 +1,102 @@
 [
   {
-    "question":"भारत की राजधानी क्या है?",
-    "options":["मुंबई","दिल्ली","जयपुर","कोलकाता"],
-    "answer":2
+    "question": "भारत की राजधानी क्या है?",
+    "options": ["मुंबई", "नई दिल्ली", "कोलकाता", "चेन्नई"],
+    "answer": 1
   },
   {
-    "question":"12 + 12 = ?",
-    "options":["24","34","14","25"],
-    "answer":1
+    "question": "2 + 2 कितना होता है?",
+    "options": ["3", "4", "5", "6"],
+    "answer": 1
   },
   {
-    "question":"राजस्थान की राजधानी क्या है?",
-    "options":["जयपुर","जोधपुर","बीकानेर","अजमेर"],
-    "answer":1
+    "question": "भारत का राष्ट्रपिता किसे कहा जाता है?",
+    "options": ["नेहरू", "गांधी जी", "पटेल", "बोस"],
+    "answer": 1
+  },
+  {
+    "question": "ताजमहल कहाँ स्थित है?",
+    "options": ["दिल्ली", "आगरा", "जयपुर", "लखनऊ"],
+    "answer": 1
+  },
+  {
+    "question": "भारत का राष्ट्रीय पशु क्या है?",
+    "options": ["शेर", "हाथी", "बाघ", "गाय"],
+    "answer": 2
+  },
+  {
+    "question": "1 किलो में कितने ग्राम होते हैं?",
+    "options": ["100", "1000", "10", "500"],
+    "answer": 1
+  },
+  {
+    "question": "भारत का राष्ट्रीय खेल क्या है?",
+    "options": ["क्रिकेट", "हॉकी", "फुटबॉल", "कबड्डी"],
+    "answer": 1
+  },
+  {
+    "question": "पृथ्वी का उपग्रह क्या है?",
+    "options": ["सूर्य", "चाँद", "मंगल", "शुक्र"],
+    "answer": 1
+  },
+  {
+    "question": "HTML का पूरा नाम क्या है?",
+    "options": ["Hyper Text Markup Language", "High Text Machine Language", "Home Tool Markup Language", "None"],
+    "answer": 0
+  },
+  {
+    "question": "भारत का सबसे बड़ा राज्य क्षेत्रफल में कौन सा है?",
+    "options": ["महाराष्ट्र", "राजस्थान", "उत्तर प्रदेश", "गुजरात"],
+    "answer": 1
+  },
+  {
+    "question": "CPU का पूरा नाम क्या है?",
+    "options": ["Central Processing Unit", "Computer Personal Unit", "Central Power Unit", "Control Processing Unit"],
+    "answer": 0
+  },
+  {
+    "question": "पानी का रासायनिक सूत्र क्या है?",
+    "options": ["H2O", "CO2", "O2", "H2"],
+    "answer": 0
+  },
+  {
+    "question": "भारत की मुद्रा क्या है?",
+    "options": ["Dollar", "Rupee", "Yen", "Euro"],
+    "answer": 1
+  },
+  {
+    "question": "सबसे तेज कंप्यूटर किसे कहते हैं?",
+    "options": ["Laptop", "Supercomputer", "Desktop", "Tablet"],
+    "answer": 1
+  },
+  {
+    "question": "सूर्य किस दिशा में उगता है?",
+    "options": ["पश्चिम", "उत्तर", "पूर्व", "दक्षिण"],
+    "answer": 2
+  },
+  {
+    "question": "भारत में कितने राज्य हैं (2026 अनुसार)?",
+    "options": ["28", "29", "30", "27"],
+    "answer": 0
+  },
+  {
+    "question": "गणतंत्र दिवस कब मनाया जाता है?",
+    "options": ["15 अगस्त", "26 जनवरी", "2 अक्टूबर", "14 नवम्बर"],
+    "answer": 1
+  },
+  {
+    "question": "लाल किला कहाँ है?",
+    "options": ["मुंबई", "दिल्ली", "आगरा", "पटना"],
+    "answer": 1
+  },
+  {
+    "question": "Internet का पूरा नाम क्या है?",
+    "options": ["International Network", "Interconnected Network", "Internal Network", "None"],
+    "answer": 1
+  },
+  {
+    "question": "विद्युत का मात्रक क्या है?",
+    "options": ["Volt", "Ampere", "Ohm", "Watt"],
+    "answer": 1
   }
 ]
