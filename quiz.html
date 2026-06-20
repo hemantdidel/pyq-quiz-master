@@ -72,7 +72,10 @@ let questions=[];
 let current=0;
 let userAnswers=[];
 
-fetch("data/rrb-groupd-01.json")
+const params = new URLSearchParams(window.location.search);
+const test = params.get("test") || "rrb-groupd-01";
+
+fetch(`data/${test}.json`)
 .then(response=>response.json())
 .then(data=>{
 questions=data;
