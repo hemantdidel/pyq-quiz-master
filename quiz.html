@@ -1,53 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Quiz</title>
+<title>RRB Quiz</title>
 </head>
 <body>
 
-<h1>🚂 RRB Group D Test</h1>
+<h1>🚂 RRB Group D Mock Test</h1>
 
 <h2 id="timer">60</h2>
 
-<p>भारत की राजधानी क्या है?</p>
+<h3 id="question"></h3>
 
-<button onclick="check('A')">मुंबई</button><br><br>
-<button onclick="check('B')">दिल्ली</button><br><br>
-<button onclick="check('C')">जयपुर</button><br><br>
-<button onclick="check('D')">कोलकाता</button>
+<div id="options"></div>
+
+<br>
+
+<button onclick="nextQuestion()">Next</button>
 
 <script>
 
-let score = 0;
+const questions = [
 
-function check(ans){
+{
+q:"भारत की राजधानी क्या है?",
+options:["मुंबई","दिल्ली","जयपुर","कोलकाता"],
+answer:1
+},
 
-if(ans=="B"){
+{
+q:"2 + 2 = ?",
+options:["2","3","4","5"],
+answer:2
+},
+
+{
+q:"राजस्थान की राजधानी?",
+options:["जयपुर","जोधपुर","बीकानेर","अजमेर"],
+answer:0
+}
+
+];
+
+let current=0;
+let score=0;
+
+function loadQuestion(){
+
+document.getElementById("question").innerHTML=
+questions[current].q;
+
+let html="";
+
+questions[current].options.forEach((opt,index)=>{
+
+html += `
+<button onclick="selectAnswer(${index})">
+${opt}
+</button><br><br>
+`;
+
+});
+
+document.getElementById("options").innerHTML=html;
+}
+
+function selectAnswer(index){
+
+if(index===questions[current].answer){
+
 score++;
+
 }
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current>=questions.length){
 
 localStorage.setItem("score",score);
 
 window.location="result.html";
+
+return;
+
 }
 
-let time = 60;
+loadQuestion();
 
-setInterval(function(){
-
-time--;
-
-document.getElementById("timer").innerHTML =
-"⏱️ " + time;
-
-if(time<=0){
-
-localStorage.setItem("score",score);
-
-window.location="result.html";
 }
 
-},1000);
+loadQuestion();
 
 </script>
 
