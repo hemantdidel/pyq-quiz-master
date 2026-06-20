@@ -6,6 +6,7 @@
 <title>Quiz</title>
 
 <style>
+
 body{
 font-family:Arial,sans-serif;
 background:#f5f7fb;
@@ -29,11 +30,39 @@ color:red;
 margin-bottom:15px;
 }
 
+#palette{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:20px;
+}
+
+.palette-btn{
+width:40px;
+height:40px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#e5e7eb;
+}
+
+.palette-active{
+background:#2563eb;
+color:white;
+}
+
+.palette-answered{
+background:#22c55e;
+color:white;
+}
+
 button{
 width:100%;
 padding:12px;
 margin:5px 0;
 cursor:pointer;
+border:none;
+border-radius:8px;
 }
 
 .selected{
@@ -43,8 +72,6 @@ background:#93c5fd;
 .next{
 background:#2563eb;
 color:white;
-border:none;
-border-radius:8px;
 }
 
 </style>
@@ -64,7 +91,11 @@ border-radius:8px;
 
 <div id="options"></div>
 
+<button onclick="prevQuestion()">Previous</button>
+
 <button class="next" onclick="nextQuestion()">Next</button>
+
+<button onclick="finishQuiz()">Submit Test</button>
 
 </div>
 
@@ -81,6 +112,7 @@ fetch(`data/${test}.json`)
 .then(response=>response.json())
 .then(data=>{
 questions=data;
+buildPalette();
 loadQuestion();
 });
 
@@ -102,6 +134,15 @@ ${opt}
 });
 
 document.getElementById("options").innerHTML=html;
+
+let buttons=document.querySelectorAll("#options button");
+
+if(userAnswers[current]!==undefined){
+buttons[userAnswers[current]]
+.classList.add("selected");
+}
+
+buildPalette();
 }
 
 function selectAnswer(index){
@@ -113,6 +154,64 @@ let buttons=document.querySelectorAll("#options button");
 buttons.forEach(btn=>btn.classList.remove("selected"));
 
 buttons[index].classList.add("selected");
+
+buildPalette();
+}
+
+function buildPalette(){
+
+let html="";
+
+for(let i=0;i<questions.length;i++){
+
+let cls="palette-btn";
+
+if(userAnswers[i]!==undefined){
+cls+=" palette-answered";
+}
+
+if(i===current){
+cls+=" palette-active";
+}
+
+html+=`
+<button class="${cls}"
+onclick="goQuestion(${i})">
+${i+1}
+</button>
+`;
+
+}
+
+document.getElementById("palette").innerHTML=html;
+}
+
+function goQuestion(index){
+
+current=index;
+loadQuestion();
+
+}
+
+function prevQuestion(){
+
+if(current>0){
+current--;
+loadQuestion();
+}
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current>=questions.length){
+finishQuiz();
+return;
+}
+
+loadQuestion();
 }
 
 function finishQuiz(){
@@ -133,21 +232,9 @@ localStorage.setItem("total",questions.length);
 window.location="result.html";
 }
 
-function nextQuestion(){
-
-current++;
-
-if(current>=questions.length){
-finishQuiz();
-return;
-}
-
-loadQuestion();
-}
-
 let time=60;
 
-setInterval(()=>{
+const timer=setInterval(()=>{
 
 time--;
 
@@ -155,7 +242,11 @@ document.getElementById("timer").innerHTML=
 "⏱️ "+time;
 
 if(time<=0){
+
+clearInterval(timer);
+
 finishQuiz();
+
 }
 
 },1000);
