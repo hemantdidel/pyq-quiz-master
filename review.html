@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Review Answers</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f5f7fb;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.correct{
+color:green;
+font-weight:bold;
+}
+
+.wrong{
+color:red;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📖 Review Answers</h1>
+
+<div id="review"></div>
+
+<script>
+
+let questions=
+JSON.parse(localStorage.getItem("questions"));
+
+let userAnswers=
+JSON.parse(localStorage.getItem("userAnswers"));
+
+let html="";
+
+questions.forEach((q,index)=>{
+
+let user=userAnswers[index];
+
+let correct=user===q.answer;
+
+html+=`
+<div class="card">
+
+<h3>
+Q${index+1}. ${q.question}
+</h3>
+
+<p>
+Your Answer:
+${user!==undefined ?
+q.options[user] :
+"Not Attempted"}
+</p>
+
+<p>
+Correct Answer:
+${q.options[q.answer]}
+</p>
+
+<p class="${
+correct ? "correct" : "wrong"
+}">
+${correct ? "✅ Correct" : "❌ Wrong"}
+</p>
+
+</div>
+`;
+
+});
+
+document.getElementById("review")
+.innerHTML=html;
+
+</script>
+
+</body>
+</html>
