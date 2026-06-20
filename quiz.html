@@ -3,46 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RRB Mock Test</title>
+<title>Quiz</title>
 
 <style>
 body{
 font-family:Arial,sans-serif;
 background:#f5f7fb;
+margin:0;
 padding:20px;
 }
 
 .container{
-max-width:700px;
+max-width:800px;
 margin:auto;
 background:white;
 padding:20px;
-border-radius:15px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 #timer{
-color:red;
 font-size:24px;
 font-weight:bold;
+color:red;
+margin-bottom:15px;
 }
 
 button{
-padding:10px;
-margin:5px 0;
 width:100%;
+padding:12px;
+margin:5px 0;
 cursor:pointer;
+}
+
+.selected{
+background:#93c5fd;
 }
 
 .next{
 background:#2563eb;
 color:white;
 border:none;
+border-radius:8px;
 }
 
-.selected{
-background:#93c5fd;
-}
 </style>
 </head>
 
@@ -50,11 +54,11 @@ background:#93c5fd;
 
 <div class="container">
 
-<h1>🚂 RRB Group D Mock Test</h1>
+<h1>🚂 RRB Group D Test</h1>
 
 <div id="timer">60</div>
 
-<h3 id="question"></h3>
+<h3 id="question">Loading...</h3>
 
 <div id="options"></div>
 
@@ -64,37 +68,27 @@ background:#93c5fd;
 
 <script>
 
-const questions = [
-{
-q:"भारत की राजधानी क्या है?",
-options:["मुंबई","दिल्ली","जयपुर","कोलकाता"],
-answer:1
-},
-{
-q:"2 + 2 = ?",
-options:["2","3","4","5"],
-answer:2
-},
-{
-q:"राजस्थान की राजधानी क्या है?",
-options:["जयपुर","जोधपुर","बीकानेर","अजमेर"],
-answer:0
-}
-];
-
+let questions=[];
 let current=0;
 let userAnswers=[];
 
+fetch("data/rrb-groupd-01.json")
+.then(response=>response.json())
+.then(data=>{
+questions=data;
+loadQuestion();
+});
+
 function loadQuestion(){
 
-document.getElementById("question").innerHTML =
-`Q${current+1}. ${questions[current].q}`;
+document.getElementById("question").innerHTML=
+`Q${current+1}. ${questions[current].question}`;
 
 let html="";
 
 questions[current].options.forEach((opt,index)=>{
 
-html += `
+html+=`
 <button onclick="selectAnswer(${index})">
 ${opt}
 </button>
@@ -102,7 +96,7 @@ ${opt}
 
 });
 
-document.getElementById("options").innerHTML = html;
+document.getElementById("options").innerHTML=html;
 }
 
 function selectAnswer(index){
@@ -116,11 +110,7 @@ buttons.forEach(btn=>btn.classList.remove("selected"));
 buttons[index].classList.add("selected");
 }
 
-function nextQuestion(){
-
-current++;
-
-if(current>=questions.length){
+function finishQuiz(){
 
 let score=0;
 
@@ -136,14 +126,19 @@ localStorage.setItem("score",score);
 localStorage.setItem("total",questions.length);
 
 window.location="result.html";
+}
 
+function nextQuestion(){
+
+current++;
+
+if(current>=questions.length){
+finishQuiz();
 return;
 }
 
 loadQuestion();
 }
-
-loadQuestion();
 
 let time=60;
 
@@ -151,25 +146,11 @@ setInterval(()=>{
 
 time--;
 
-document.getElementById("timer").innerHTML =
+document.getElementById("timer").innerHTML=
 "⏱️ "+time;
 
 if(time<=0){
-
-let score=0;
-
-for(let i=0;i<questions.length;i++){
-
-if(userAnswers[i]===questions[i].answer){
-score++;
-}
-
-}
-
-localStorage.setItem("score",score);
-localStorage.setItem("total",questions.length);
-
-window.location="result.html";
+finishQuiz();
 }
 
 },1000);
