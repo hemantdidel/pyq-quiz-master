@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Review Answers</title>
 
 <style>
@@ -8,7 +10,18 @@
 body{
 font-family:Arial;
 background:#f5f7fb;
+margin:0;
 padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+color:#2563eb;
 }
 
 .card{
@@ -16,7 +29,7 @@ background:white;
 padding:15px;
 margin-bottom:15px;
 border-radius:10px;
-box-shadow:0 2px 5px rgba(0,0,0,.1);
+box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 .correct{
@@ -29,63 +42,74 @@ color:red;
 font-weight:bold;
 }
 
+.btn{
+display:inline-block;
+padding:12px 20px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:8px;
+margin-top:20px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>📖 Review Answers</h1>
 
 <div id="review"></div>
 
+<a class="btn" href="index.html">🏠 Home</a>
+
+</div>
+
 <script>
 
-let questions=
-JSON.parse(localStorage.getItem("questions"));
+let questions = JSON.parse(localStorage.getItem("questions") || "[]");
+let userAnswers = JSON.parse(localStorage.getItem("userAnswers") || "[]");
 
-let userAnswers=
-JSON.parse(localStorage.getItem("userAnswers"));
+let html = "";
 
-let html="";
+if(questions.length === 0){
+document.getElementById("review").innerHTML =
+"<h3>No data found ❌</h3>";
+}else{
 
-questions.forEach((q,index)=>{
+for(let i=0;i<questions.length;i++){
 
-let user=userAnswers[index];
+let q = questions[i];
+let user = userAnswers[i];
 
-let correct=user===q.answer;
+let correct = user === q.answer;
 
-html+=`
+html += `
 <div class="card">
 
-<h3>
-Q${index+1}. ${q.question}
-</h3>
+<h3>Q${i+1}. ${q.question}</h3>
 
-<p>
-Your Answer:
-${user!==undefined ?
-q.options[user] :
-"Not Attempted"}
+<p><b>Your Answer:</b> 
+${user !== undefined ? q.options[user] : "Not Attempted"}
 </p>
 
-<p>
-Correct Answer:
+<p><b>Correct Answer:</b> 
 ${q.options[q.answer]}
 </p>
 
-<p class="${
-correct ? "correct" : "wrong"
-}">
+<p class="${correct ? "correct" : "wrong"}">
 ${correct ? "✅ Correct" : "❌ Wrong"}
 </p>
 
 </div>
 `;
+}
 
-});
+document.getElementById("review").innerHTML = html;
 
-document.getElementById("review")
-.innerHTML=html;
+}
 
 </script>
 
