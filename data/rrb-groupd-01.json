@@ -13,10 +13,5 @@
     "question":"राजस्थान की राजधानी क्या है?",
     "options":["जयपुर","जोधपुर","बीकानेर","अजमेर"],
     "answer":1
-  },
-  {
-  "question":"JSON Test Question 4",
-  "options":["A","B","C","D"],
-  "answer":0
-}
+  }
 ]
